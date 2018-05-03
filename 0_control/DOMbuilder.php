@@ -76,10 +76,12 @@ class DOMbuilder {
         $this->DOM->appendChild($newChild);
 
         $newChild = $this->DOM->createElement("head");
-        $this->DOM->getElementsByTagName("html")->item(0)->appendChild($newChild);
+        $this->DOM->getElementsByTagName("html")->item(0)->
+            appendChild($newChild);
 
         $newChild = $this->DOM->createElement("body");
-        $this->DOM->getElementsByTagName("html")->item(0)->appendChild($newChild);
+        $this->DOM->getElementsByTagName("html")->item(0)->
+            appendChild($newChild);
     }
 
     /**
@@ -87,7 +89,8 @@ class DOMbuilder {
      */
     public function create_element($name, $parent) {
         $newChild = $this->DOM->createElement($name);
-        $element = $this->DOM->getElementsByTagName($parent)->item(0)->appendChild($newChild);
+        $element = $this->DOM->getElementsByTagName($parent)->item(0)->
+                 appendChild($newChild);
 
         return $element;
     }
@@ -101,7 +104,8 @@ class DOMbuilder {
 
         $dom_element->appendChild($dom_attribute);
 
-        $this->DOM->getElementsByTagName('body')->item(0)->appendChild($dom_element);
+        $this->DOM->getElementsByTagName('body')->item(0)->
+            appendChild($dom_element);
     }
 
     /**
