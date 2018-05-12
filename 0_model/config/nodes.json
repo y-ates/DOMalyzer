@@ -1,0 +1,86 @@
+{
+    "0": {
+		"clobbered": {
+			"elements": {
+				"0": {
+					"tag": "form",
+					"parent_node": "body",
+					"attributes": {
+						"name": "form1"
+					},
+					"content": null
+				},
+				"1": {
+					"tag": "input",
+					"parent_node": "form",
+					"attributes": {
+						"name": "attributes"
+					},
+					"content": null
+				}
+			}			
+		},
+		"not_clobbered": {			
+			"elements": {
+				"0": {
+					"tag": "form",
+					"parent_node": "body",
+					"attributes": {
+						"name": "form1"
+					},
+					"content": null
+				},
+				"1": {
+					"tag": "input",
+					"parent_node": "form",
+					"attributes": {
+						"name": "attributes"
+					},
+					"content": null
+				}
+			}			
+		}
+	},
+    "1": {
+		"clobbered": {
+			"elements": {
+				"0": {
+					"tag": "form",
+					"parent_node": "body",
+					"attributes": {
+						"name": "form1"
+					},
+					"content": null
+				},
+				"1": {
+					"tag": "input",
+					"parent_node": "form",
+					"attributes": {
+						"name": "attributestest"
+					},
+					"content": null
+				}
+			}			
+		},
+		"not_clobbered": {			
+			"elements": {
+				"0": {
+					"tag": "form",
+					"parent_node": "body",
+					"attributes": {
+						"name": "form1"
+					},
+					"content": null
+				},
+				"1": {
+					"tag": "input",
+					"parent_node": "form",
+					"attributes": {
+						"name": "attributes1"
+					},
+					"content": null
+				}
+			}			
+		}
+   }	
+}
