@@ -30,7 +30,7 @@ class DOMgenerator {
     public function __construct() {
         $this->parse_JSON("0_model/config/nodes.json");
 
-        $this->generate_DOM($this->DOMs, 0);
+        $this->generate_DOM($this->DOMs, 1);
     }
 
     private function parse_JSON($path) {
@@ -63,7 +63,8 @@ class DOMgenerator {
                                                       $element["parent_node"]);
 
                 foreach ($element["attributes"] as $field => $value) {
-                    $builder_clob->add_attribute($node, $field, $value);
+                    $builder_clob->add_attribute($node, $element["parent_node"],
+                                                 $field, $value);
                 }
             }
         }
@@ -84,7 +85,9 @@ class DOMgenerator {
                                                           $element["parent_node"]);
 
                 foreach ($element["attributes"] as $field => $value) {
-                    $builder_not_clob->add_attribute($node, $field, $value);
+                    $builder_not_clob->add_attribute($node,
+                                                     $element["parent_node"],
+                                                     $field, $value);
                 }
             }
         }
@@ -92,7 +95,6 @@ class DOMgenerator {
         $this->DOM_not_clobbered = $builder_not_clob->get_DOM();
         unset($builder_not_clob);
     }
-
 }
 
 ?>
