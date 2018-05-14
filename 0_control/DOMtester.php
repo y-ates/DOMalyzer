@@ -19,17 +19,17 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-include '0_control/DOMbuilder.php';
 include '0_model/DOMgenerator.php';
 
 class DOMtester {
 
-    private $builder;
     private $generator;
 
     public function __construct() {
-        $this->builder = new DOMbuilder();
         $this->generator = new DOMgenerator();
+
+        $this->cmp_DOM_specific($this->generator->DOM_clobbered,
+                                $this->generator->DOM_not_clobbered);
     }
 
     private function compare_DOMs() {
@@ -41,7 +41,7 @@ class DOMtester {
      * DOMs contain the clobbering attack vector and the other does not
      */
     private function cmp_DOM_specific($DOM1, $DOM2, $attributes) {
-
+        
     }
 
     /**
