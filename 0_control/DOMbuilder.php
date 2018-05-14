@@ -89,6 +89,7 @@ class DOMbuilder {
      */
     public function create_element($name, $parent) {
         $newChild = $this->DOM->createElement($name);
+        
         $element = $this->DOM->getElementsByTagName($parent)->item(0)->
                  appendChild($newChild);
 
@@ -98,13 +99,13 @@ class DOMbuilder {
     /**
      * Create $attribute to $dom_element containing $value
      */
-    public function add_attribute($dom_element, $attribute, $value) {
+    public function add_attribute($dom_element, $parent, $attribute, $value) {
         $dom_attribute = $this->DOM->createAttribute($attribute);
         $dom_attribute->value = $value;
 
         $dom_element->appendChild($dom_attribute);
 
-        $this->DOM->getElementsByTagName('body')->item(0)->
+        $this->DOM->getElementsByTagName($parent)->item(0)->
             appendChild($dom_element);
     }
 
