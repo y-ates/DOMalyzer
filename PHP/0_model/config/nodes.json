@@ -1,0 +1,72 @@
+{
+    "0": {
+		"clobbered": {
+			"elements": {
+				"0": {
+					"tag": "form",
+					"parent_node": "body",
+					"attributes": {
+						"name": "form1"
+					},
+					"content": null
+				},
+				"1": {
+					"tag": "input",
+					"parent_node": "form",
+					"attributes": {
+						"name": "attributes"
+					},
+					"content": null
+				}
+			}			
+		},
+		"not_clobbered": {			
+			"elements": {
+				"0": {
+					"tag": "form",
+					"parent_node": "body",
+					"attributes": {
+						"name": "form1"
+					},
+					"content": null
+				},
+				"1": {
+					"tag": "input",
+					"parent_node": "form",
+					"attributes": {
+						"name": "attributes_not"
+					},
+					"content": null
+				}
+			}			
+		}
+	},
+    "1": {
+		"clobbered": {
+			"elements": {
+				"0": {
+					"tag": "img",
+					"parent_node": "body",
+					"attributes": {
+						"src": "test.png",
+						"name": "querySelector"
+					},
+					"content": null
+				}
+			}
+		},
+		"not_clobbered": {			
+			"elements": {
+				"0": {
+					"tag": "img",
+					"parent_node": "body",
+					"attributes": {
+						"src": "test.png",
+						"name": "querySelector_not"
+					},
+					"content": null
+				}			
+			}
+		}
+	} 
+}
