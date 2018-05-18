@@ -98,17 +98,7 @@ var build_dom = function(json, index, clob_flag) {
 			}
 		}
 	}
-	
 
-	//node.setAttribute();
-
-	//document.getElementsByTagName("body")[0].appendChild(node);
-
-    //var clob_elm_len = json[0].clobbered.elements[0].length;
-    //console.log(arr[0].clobbered.elements[0].attributes.length);
-    //console.log(json[0].clobbered[0].parent_node);
-	//console.log(Object.keys(json[0].clobbered[0]).length);
-    //console.log(json[0].clobbered.elements[0].attributes.length);
 
     //console.log(Object.keys(json).length);
 
