@@ -171,7 +171,14 @@ var main = function() {
 		}
 	}
 
-	filepath = "tags.txt";
+	/*
+	window.onload = function() {
+		if(!window.location.hash) {
+			window.location = window.location + '#loaded';
+			window.location.reload();
+		}
+	};
+	*/
     readfile_txt(filepath, function(text){
 		var lines = text.split('\n');
         console.log(lines[1]);
