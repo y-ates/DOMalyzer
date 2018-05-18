@@ -85,7 +85,17 @@ var build_dom = function(json, index, clob_flag) {
 		}
 
 		for (var k=0; k < attributes_len; k++) {
-			compare(Object.entries(json[index].clobbered[j].attributes)[k][1]);
+			var tmp1 = compare(Object.entries(json[index].clobbered[j].attributes)[k][1]);
+			var tmp2 = compare(Object.entries(json[index].not_clobbered[j].attributes)[k][1]);
+
+			if (tmp1 == tmp2) {
+				//console.log("No Clobbering");
+			} else {
+				console.log("Clobbering found!");
+				console.log("   Tag: " + json[index].clobbered[j].tag);
+				console.log("   Attribute name: " + Object.entries(json[index].clobbered[j].attributes)[k][0]);
+				console.log("   Attribute value: " + Object.entries(json[index].clobbered[j].attributes)[k][1]);
+			}
 		}
 	}
 	
