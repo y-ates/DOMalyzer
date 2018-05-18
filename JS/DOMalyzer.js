@@ -47,37 +47,40 @@ var build_dom = function(json, index, clob_flag) {
 	
 	var attribute_name = ["name", "id"];
 
-	var clobbered_len = Object.keys(json[index].clobbered).length;
+	var clobbered_len = Object.keys(pointer).length;
 	
 	for (var j=0; j < clobbered_len; j++) {
-		var node = document.createElement(json[index].clobbered[j].tag);
+
+		var node = document.createElement(pointer[j].tag);
 		//console.log(node);
 /*
-		for (var key in json[index].clobbered[j].attributes) {
-			if (!json[index].clobbered[j].attributes.hasOwnProperty(key)) {
-				var value = json[index].clobbered[j].attributes[key];
+		for (var key in pointer[j].attributes) {
+			if (!pointer[j].attributes.hasOwnProperty(key)) {
+				var value = pointer[j].attributes[key];
 				
 				console.log(value);
 			} else {
-				var value = json[index].clobbered[j].attributes[key];
+				var value = pointer[j].attributes[key];
 				
 				console.log(value);
 			}
 		}
 	*/	
-		var attributes_len = Object.keys(json[index].clobbered[j].attributes).length;
+		var attributes_len = Object.keys(pointer[j].attributes).length;
 		for (var k=0; k < attributes_len; k++) {
-			var attr_name = Object.entries(json[index].clobbered[j].attributes)[k][0];
-			node.setAttribute(attr_name, json[index].clobbered[j].attributes.name);
+			var attr_name = Object.entries(pointer[j].attributes)[k][0];
+			var attr_val = Object.entries(pointer[j].attributes)[k][1];
+			
+			node.setAttribute(attr_name, attr_val);
 		}
 		
-		if ((json[index].clobbered[j].parent_node != "body") &&
-			(json[index].clobbered[j].parent_node != "head") &&
-			(json[index].clobbered[j].parent_node != "html")) {
-			document.getElementsByName(json[index].clobbered[j]
+		if ((pointer[j].parent_node != "body") &&
+			(pointer[j].parent_node != "head") &&
+			(pointer[j].parent_node != "html")) {
+			document.getElementsByName(pointer[j]
 									   .parent_node)[0].appendChild(node);
 		} else {
-			document.getElementsByTagName(json[index].clobbered[j]
+			document.getElementsByTagName(pointer[j]
 										  .parent_node)[0].appendChild(node);				
 		}
 
