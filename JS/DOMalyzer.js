@@ -179,8 +179,10 @@ var main = function() {
 		}
 	};
 	*/
+	filepath = "db/tags.txt";
     readfile_txt(filepath, function(text){
 		var lines = text.split('\n');
-        console.log(lines[1]);
-    });	
+        //console.log(lines[1]);
+    });
+
 };
