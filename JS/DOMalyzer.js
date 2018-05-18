@@ -152,12 +152,13 @@ var readfile_txt = function (file, callback) {
     };
 
     rawFile.send(null);
-	
 };
 
 
 var compare = function(clobber_string) {
-	console.log(window[clobber_string]);
+	var test = window[clobber_string];
+
+	return test;
 };
   
 var main = function() {
