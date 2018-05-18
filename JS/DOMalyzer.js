@@ -17,7 +17,7 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var readjson =  function (file, callback) {
+var readjson = function (file, callback) {
     var rawFile = new XMLHttpRequest();
 
     rawFile.overrideMimeType("application/json");
@@ -32,7 +32,6 @@ var readjson =  function (file, callback) {
 };
 
 var parse_JSON = function (filepath, index) {
-    var self = this;
     readjson(filepath, function(text){
         build_dom(JSON.parse(text), index);
     });
@@ -48,7 +47,7 @@ var build_dom = function(json, index) {
 	for (var j=0; j < clobbered_len; j++) {
 		var node = document.createElement(json[index].clobbered[j].tag);
 		//console.log(node);
-
+/*
 		for (var key in json[index].clobbered[j].attributes) {
 			if (!json[index].clobbered[j].attributes.hasOwnProperty(key)) {
 				var value = json[index].clobbered[j].attributes[key];
@@ -60,7 +59,7 @@ var build_dom = function(json, index) {
 				console.log(value);
 			}
 		}
-		
+	*/	
 		var attributes_len = Object.keys(json[index].clobbered[j].attributes).length;
 		for (var k=0; k < attributes_len; k++) {
 			var attr_name = Object.entries(json[index].clobbered[j].attributes)[k][0];
@@ -110,7 +109,18 @@ var brutforce_attribute_values = function() {
 	
 };
 
-var readfile = function() {
+var readfile_txt = function (file, callback) {
+	var rawFile = new XMLHttpRequest();
+
+    rawFile.overrideMimeType("text/plain");
+    rawFile.open("GET", file, true);
+    rawFile.onreadystatechange = function() {
+        if (rawFile.readyState === 4 && rawFile.status == "200") {
+            callback(rawFile.responseText);
+        }
+    };
+
+    rawFile.send(null);
 	
 };
 
@@ -121,5 +131,12 @@ var compare = function(clobber_string) {
   
 var main = function() {
     var index = 1;
-    parse_JSON("./0_model/clobber_vectors.json", index);
+    parse_JSON("./clobber_vectors.json", index);
+
+
+	filepath = "tags.txt";
+    readfile_txt(filepath, function(text){
+		var lines = text.split('\n');
+        console.log(lines[1]);
+    });	
 };
