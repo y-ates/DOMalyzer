@@ -99,12 +99,35 @@ var build_dom = function(json, index, clob_flag) {
 		}
 	}
 
-
-    //console.log(Object.keys(json).length);
-
-    return json;
+	//undo_dom(json, index);
 };
-                                                                
+
+var undo_dom = function(json, index, clob_flag) {
+	if (clob_flag) {
+		var pointer = json[index].clobbered;
+	} else {
+		var pointer = json[index].not_clobbered;
+	}
+	
+	var clobbered_len = Object.keys(pointer).length;
+	
+	for (var j=0; j < clobbered_len; j++) {
+		var node = document.getElementsByTagName(pointer[j].tag)[0];
+
+		if ((pointer[j].parent_node != "body") &&
+			(pointer[j].parent_node != "head") &&
+			(pointer[j].parent_node != "html")) {
+			if (typeof node != 'undefined') {
+				document.getElementsByName(pointer[j]
+										   .parent_node)[0].removeChild(node);
+			}
+		} else {
+			document.getElementsByTagName(pointer[j]
+										  .parent_node)[0].removeChild(node);
+		}
+	}	
+};
+
 var bruteforce_tags = function() {
 	
 };
