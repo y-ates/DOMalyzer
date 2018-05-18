@@ -31,9 +31,9 @@ var readjson = function (file, callback) {
     rawFile.send(null);
 };
 
-var parse_JSON = function (filepath, index) {
+var parse_JSON = function (filepath, index, flag) {
     readjson(filepath, function(text){
-        build_dom(JSON.parse(text), index);
+        build_dom(JSON.parse(text), index, flag);
     });
 };
 
