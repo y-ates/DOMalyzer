@@ -162,9 +162,14 @@ var compare = function(clobber_string) {
 };
   
 var main = function() {
-    var index = 1;
-    parse_JSON("./clobber_vectors.json", index);
-
+	var index = 0;
+	var clob_flag = [true, false];
+	parse_JSON("db/clobber_vectors.json", 1, false);
+	for (var i=0; i<2; i++) {
+		for (var flag in clob_flag) {
+			//parse_JSON("db/clobber_vectors.json", i, flag);			
+		}
+	}
 
 	filepath = "tags.txt";
     readfile_txt(filepath, function(text){
