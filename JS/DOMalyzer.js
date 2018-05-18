@@ -38,8 +38,13 @@ var parse_JSON = function (filepath, index, flag) {
 };
 
 
-var build_dom = function(json, index) {
-	var result = {};
+var build_dom = function(json, index, clob_flag) {
+	if (clob_flag) {
+		var pointer = json[index].clobbered;
+	} else {
+		var pointer = json[index].not_clobbered;
+	}
+	
 	var attribute_name = ["name", "id"];
 
 	var clobbered_len = Object.keys(json[index].clobbered).length;
