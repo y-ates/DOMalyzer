@@ -163,6 +163,26 @@ var bruteforce_attribute = function(tag, attribute_value, attr_name) {
 		//console.log(line);
 	}
 };
+
+
+/**
+ * attr_parameters[0]: tag
+ * attr_parameters[1]: attr_name (id/name)
+ */
+var getline = function(line, filepath, callback, attr_parameters) {
+	readfile_txt(filepath, function(text){
+		var lines = text.split('\n');
+
+		if (typeof lines[line] != "undefined") {
+			if (typeof attr_parameters != "undefined") {
+				callback(attr_parameters[0], lines[line], attr_parameters[1]);
+			} else {
+				callback(lines[line]);
+			}
+		} else {
+			callback("EOF");
+		}
+    });
 };
 
 var readfile_txt = function (file, callback) {
