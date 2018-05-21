@@ -209,7 +209,7 @@ var compare = function(clobber_string) {
 var main = function() {
 	var index = 0;
 	var clob_flag = [true, false];
-	parse_JSON("db/clobber_vectors.json", 1, false);
+	//parse_JSON("db/clobber_vectors.json", 1, false);
 	for (var i=0; i<2; i++) {
 		for (var flag in clob_flag) {
 			//parse_JSON("db/clobber_vectors.json", i, flag);			
@@ -224,10 +224,11 @@ var main = function() {
 		}
 	};
 	*/
-	filepath = "db/tags.txt";
-    readfile_txt(filepath, function(text){
-		var lines = text.split('\n');
-        //console.log(lines[1]);
-    });
-
+	/**
+	 * db/tags.txt
+	 * db/attr_names.txt
+	 * db/attributes.txt
+	 */
+	//getline(107, "db/tags.txt", create_bruteforce_dom);
+	create_bruteforce_dom();
 };
