@@ -151,8 +151,18 @@ var bruteforce_tags = function(line) {
 	}	
 };
 
-var brutforce_attribute_values = function() {
-	
+
+var bruteforce_attribute = function(tag, attribute_value, attr_name) {
+	if (attribute_value == "EOF") {
+		console.log("Function: bruteforce_attribute -> EOF");
+	} else {
+		var node = document.getElementsByTagName(tag)[0];
+
+		node.setAttribute(attr_name, attribute_value);
+				
+		//console.log(line);
+	}
+};
 };
 
 var readfile_txt = function (file, callback) {
