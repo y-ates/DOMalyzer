@@ -128,8 +128,16 @@ var undo_dom = function(json, index, clob_flag) {
 	}	
 };
 
-var bruteforce_tags = function() {
+var create_bruteforce_dom = function() {
+	var tags_file = "db/tags.txt";
+	var attr_file = "db/attributes.txt";
 	
+	var line = 62;
+	getline(line, tags_file, bruteforce_tags);
+
+	var attr_parameters = ["img", "name"];
+	getline(line, attr_file, bruteforce_attribute, attr_parameters);
+	console.log(current_brute_tag);
 };
 
 var bruteforce_attribute_names = function() {
