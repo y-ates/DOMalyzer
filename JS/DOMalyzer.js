@@ -140,8 +140,15 @@ var create_bruteforce_dom = function() {
 	console.log(current_brute_tag);
 };
 
-var bruteforce_attribute_names = function() {
-	
+var bruteforce_tags = function(line) {
+	if (line == "EOF") {
+		console.log("Function: bruteforce_tags -> EOF");
+	} else {
+		current_brute_tag = line;
+		var node = document.createElement(line);
+		
+		document.getElementsByTagName("body")[0].appendChild(node);
+	}	
 };
 
 var brutforce_attribute_values = function() {
