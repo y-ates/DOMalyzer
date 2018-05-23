@@ -135,9 +135,19 @@ var undo_dom = function(json, index, clob_flag) {
 var create_bruteforce_dom = function() {
 	var tags_file = "db/tags.txt";
 	var attr_file = "db/attributes.txt";
+	line_count = [];
+	clobbered = 0;
+
+	var attr_parameters = [null, "name"];
 	
-	var line = 62;
-	getline(line, tags_file, bruteforce_tags);
+	//var line = 62;
+	for (var line=7; line < 107; line++){
+		for (var i=0; i < 100; i++) {//4771
+			getline(line, tags_file, bruteforce_tags);
+			getline(i, attr_file, bruteforce_attribute, attr_parameters);
+		}
+	}
+
 
 	var attr_parameters = ["img", "name"];
 	getline(line, attr_file, bruteforce_attribute, attr_parameters);
