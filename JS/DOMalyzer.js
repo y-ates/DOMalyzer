@@ -149,14 +149,28 @@ var create_bruteforce_dom = function() {
 	}
 
 
+	// clean everything what is left
 };
 
-var bruteforce_tags = function(line) {
+function bruteforce_tags(line) {
 	if (line == "EOF") {
 		console.log("Function: bruteforce_tags -> EOF");
 	} else {
+		// global variable used in bruteforce_attribute
 		current_brute_tag = line;
+		//console.log(line);
+		
 		var node = document.createElement(line);
+		if (typeof node != "undefined") {
+			//console.log(typeof node);
+			document.getElementsByTagName("body")[0].appendChild(node);
+		} else {
+			console.log("hier");			
+			console.log(line);			
+		}
+	}
+
+	//console.log(line_count["bruteforce_tags"]);
 		
 		document.getElementsByTagName("body")[0].appendChild(node);
 	}	
