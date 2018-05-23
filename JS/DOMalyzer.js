@@ -243,6 +243,9 @@ var getline = function(line, filepath, callback, attr_parameters) {
 	readfile_txt(filepath, function(text){
 		var lines = text.split('\n');
 
+		var index = callback.name;		
+		line_count[index] = lines.length;
+
 		if (typeof lines[line] != "undefined") {
 			if (typeof attr_parameters != "undefined") {
 				callback(attr_parameters[0], lines[line], attr_parameters[1]);
