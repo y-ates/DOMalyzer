@@ -185,7 +185,32 @@ function undo_tag(line) {
 }
 
 
-var bruteforce_attribute = function(tag, attribute_value, attr_name) {
+function check_clobbered(string, tag) {
+	if (typeof window[string] === "undefined") {
+		//object does not exist
+		undo_tag(tag);
+		
+		return;
+	} else if (typeof window[string].tagName === "undefined") {
+		// probably a function as been returned
+		undo_tag(tag);
+		
+		return;
+	} else {
+		var expectedNode = tag.toUpperCase() === window[string].tagName.toUpperCase();
+
+		if (expectedNode) {
+			console.log("Clobbering...");
+			console.log("Tag: " + tag + ", attribute: " + string);
+			console.log("Node: ");
+			console.log(window[string]);
+			clobbered++;
+			console.log("clobbered:" + clobbered);
+		}
+		
+		undo_tag(tag);		
+	}
+}
 	if (attribute_value == "EOF") {
 		console.log("Function: bruteforce_attribute -> EOF");
 	} else {
