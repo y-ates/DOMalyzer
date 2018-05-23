@@ -39,10 +39,12 @@ var parse_JSON = function (filepath, index, flag) {
 
 
 var build_dom = function(json, index, clob_flag) {
+	var pointer;
+	
 	if (clob_flag) {
-		var pointer = json[index].clobbered;
+		pointer = json[index].clobbered;
 	} else {
-		var pointer = json[index].not_clobbered;
+		pointer = json[index].not_clobbered;
 	}
 	
 	var attribute_name = ["name", "id"];
