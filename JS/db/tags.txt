@@ -70,7 +70,7 @@ video
 audio
 source
 track
-area map
+area
 svg
 mathml
 table
@@ -101,6 +101,6 @@ script
 canvas
 template
 details
-summery
 menu
+summary
 dialog
