@@ -171,10 +171,18 @@ function bruteforce_tags(line) {
 	}
 
 	//console.log(line_count["bruteforce_tags"]);
-		
-		document.getElementsByTagName("body")[0].appendChild(node);
-	}	
-};
+}
+
+function undo_tag(line) {
+	//console.log("removing:" + line);
+	//var node = document.getElementsByTagName(line)[0];
+	//node.parentNode.removeChild(node);
+
+	var myNode = document.getElementsByTagName("body")[0];
+	while (myNode.firstChild) {
+		myNode.removeChild(myNode.firstChild);
+	}
+}
 
 
 var bruteforce_attribute = function(tag, attribute_value, attr_name) {
