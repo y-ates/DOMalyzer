@@ -149,9 +149,6 @@ var create_bruteforce_dom = function() {
 	}
 
 
-	var attr_parameters = ["img", "name"];
-	getline(line, attr_file, bruteforce_attribute, attr_parameters);
-	console.log(current_brute_tag);
 };
 
 var bruteforce_tags = function(line) {
