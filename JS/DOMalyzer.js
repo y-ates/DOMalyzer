@@ -211,16 +211,28 @@ function check_clobbered(string, tag) {
 		undo_tag(tag);		
 	}
 }
+
+function bruteforce_attribute(tag, attribute_value, attr_name) {
 	if (attribute_value == "EOF") {
 		console.log("Function: bruteforce_attribute -> EOF");
 	} else {
-		var node = document.getElementsByTagName(tag)[0];
+		var node;
+		if (tag == null) {
+			node = document.getElementsByTagName(current_brute_tag)[0];
+		} else {
+			node = document.getElementsByTagName(tag)[0];			
+		}
 
-		node.setAttribute(attr_name, attribute_value);
-				
-		//console.log(line);
+		if (typeof node == "object") {
+			node.setAttribute(attr_name, attribute_value);
+
+			tag == null ? check_clobbered(attribute_value, current_brute_tag)
+				: check_clobbered(attribute_value, tag);					
+		}
 	}
-};
+
+	//console.log(line_count["bruteforce_tags"]);
+}
 
 
 /**
