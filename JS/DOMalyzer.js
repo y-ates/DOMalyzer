@@ -105,10 +105,12 @@ var build_dom = function(json, index, clob_flag) {
 };
 
 var undo_dom = function(json, index, clob_flag) {
+	var pointer;
+	
 	if (clob_flag) {
-		var pointer = json[index].clobbered;
+		pointer = json[index].clobbered;
 	} else {
-		var pointer = json[index].not_clobbered;
+		pointer = json[index].not_clobbered;
 	}
 	
 	var clobbered_len = Object.keys(pointer).length;
