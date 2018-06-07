@@ -244,6 +244,9 @@ function try_tag(tag_name) {
     }
 }
 
+function try_attribute(attr_name, attr_value) {
+    var node;
+	//console.log(attr_value);
 
 function check_clobbered(string, tag) {
     if (typeof window[string] === "undefined") {
