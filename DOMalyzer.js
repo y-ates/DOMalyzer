@@ -164,6 +164,9 @@ function write_to_file(data, url) {
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(data);
 }
+function isFunction(functionToCheck) {
+ return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
+}
 }
 
 function bruteforce_tags(line) {
