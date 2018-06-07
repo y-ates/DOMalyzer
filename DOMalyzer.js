@@ -232,6 +232,15 @@ function undo_tag(line) {
     var myNode = document.getElementsByTagName("body")[0];
     while (myNode.firstChild) {
         myNode.removeChild(myNode.firstChild);
+function try_tag(tag_name) {
+	if (tag_name !== "") {
+		var node = document.createElement(tag_name);
+
+		current_brute_tag = tag_name;
+	}
+
+    if (typeof node != "undefined") {
+        document.getElementsByTagName("body")[0].appendChild(node);
     }
 }
 
