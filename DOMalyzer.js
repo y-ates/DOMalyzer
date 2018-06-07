@@ -144,6 +144,15 @@ function create_bruteforce_dom() {
     //getline(0, attr_file, bruteforce_attribute, attr_parameters);
 	bruteforce(tags_file, attr_file, "name");
 }
+
+//TODO: remove specific node
+function undo_tag(line) {
+    var myNode = document.getElementsByTagName("body")[0];
+
+    while (myNode.firstChild) {
+        myNode.removeChild(myNode.firstChild);
+    }
+}
 }
 
 function bruteforce_tags(line) {
