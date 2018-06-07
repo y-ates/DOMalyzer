@@ -153,6 +153,8 @@ function undo_tag(line) {
         myNode.removeChild(myNode.firstChild);
     }
 }
+
+
 function write_to_file(data, url) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -164,9 +166,11 @@ function write_to_file(data, url) {
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(data);
 }
+
 function isFunction(functionToCheck) {
  return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
 }
+
 function check_clobbered(string, tag) {
     if (typeof window[string] === "undefined") {
         //object does not exist
@@ -224,14 +228,7 @@ function bruteforce_tags(line) {
     //console.log(line_count["bruteforce_tags"]);
 }
 
-function undo_tag(line) {
-    //console.log("removing:" + line);
-    //var node = document.getElementsByTagName(line)[0];
-    //node.parentNode.removeChild(node);
 
-    var myNode = document.getElementsByTagName("body")[0];
-    while (myNode.firstChild) {
-        myNode.removeChild(myNode.firstChild);
 function try_tag(tag_name) {
 	if (tag_name !== "") {
 		var node = document.createElement(tag_name);
@@ -248,66 +245,66 @@ function try_attribute(attr_name, attr_value) {
     var node;
 	//console.log(attr_value);
 
-function check_clobbered(string, tag) {
-    if (typeof window[string] === "undefined") {
-        //object does not exist
-        undo_tag(tag);
+    node = document.getElementsByTagName(current_brute_tag)[0];
 
-        return;
-    } else {
-        var expectedNode = tag.toUpperCase() === tag.toUpperCase();
+    if (typeof node == "object") {
+		//console.log(node);
+        node.setAttribute(attr_name, attr_value);
 
-        if (expectedNode) {
-            var details = "Tag: " + tag + ", attribute: " + string;
-            var node = window[string];
-/*
-			var xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200) {
-				}
-			};
-			xhttp.open("POST", "http://localhost:8002/filewriter.php", true);
-			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xhttp.send(details);
-	*/		
-	
-            console.log("Clobbering...");
-            console.log("Tag: " + tag + ", attribute: " + string);
-            console.log("Node: ");
-            console.log(window[string]);
-            clobbered++;
-            console.log("clobbered:" + clobbered);
+		check_clobbered(attr_value, current_brute_tag);
 
-        }
-
-        undo_tag(tag);
     }
 }
 
-function bruteforce_attribute(tag, attribute_value, attr_name) {
-    if (attribute_value == "EOF") {
-        console.log("Function: bruteforce_attribute -> EOF");
-    } else {
-        var node;
+function bruteforce(tags_file, attr_file,  attr_name) {
+    readfile_txt(tags_file, function(tags_text){
+        var tag_lines = tags_text.split('\n');
 
-        if (tag == null) {
-            //console.log(current_brute_tag);
-            node = document.getElementsByTagName(current_brute_tag)[0];
-        } else {
-            node = document.getElementsByTagName(tag)[0];
-        }
 
-        if (typeof node == "object") {
-            node.setAttribute(attr_name, attribute_value);
-            //console.log(node);
+        readfile_txt(attr_file, function(attr_text){
+            var attr_lines = attr_text.split('\n');
 
-            tag == null ? check_clobbered(attribute_value, current_brute_tag)
-                : check_clobbered(attribute_value, tag);
+            for (var t_index=0; t_index < tag_lines.length; t_index++) {
+                if (typeof tag_lines[t_index] != "undefined") {
+                    try_tag(tag_lines[t_index]);
 
-        }
-    }
-	//getline(0, tags_file, bruteforce_tags);
-    bruteforce_tags(current_brute_tag);
+					for (var a_index=0; a_index < attr_lines.length; a_index++) {
+						if (typeof attr_lines[a_index] != "undefined") {
+							//console.log(attr_lines[a_index]);
+							try_attribute(attr_name, attr_lines[a_index]);
+							//try_tag(tag_lines[t_index]);
+						}
+					}
+                }
+            }
+        });
+    });
+
+    /*
+      if (attribute_value == "EOF") {
+      console.log("Function: bruteforce_attribute -> EOF");
+      } else {
+      var node;
+
+      if (tag == null) {
+      //console.log(current_brute_tag);
+      node = document.getElementsByTagName(current_brute_tag)[0];
+      } else {
+      node = document.getElementsByTagName(tag)[0];
+      }
+
+      if (typeof node == "object") {
+      node.setAttribute(attr_name, attribute_value);
+      //console.log(node);
+
+      tag == null ? check_clobbered(attribute_value, current_brute_tag)
+      : check_clobbered(attribute_value, tag);
+
+      }
+      }
+      //getline(0, tags_file, bruteforce_tags);
+      bruteforce_tags(current_brute_tag);
+    */
 }
 
 
@@ -339,18 +336,6 @@ function getline(line, filepath, callback, attr_parameters) {
         var index = callback.name;
         line_count[index] = lines.length;
         iterate_list(text, callback, attr_parameters);
-
-        /*
-          if (typeof lines[line] != "undefined") {
-          if (typeof attr_parameters != "undefined") {
-          callback(attr_parameters[0], lines[line], attr_parameters[1]);
-          } else {
-          callback(lines[line]);
-          }
-          } else {
-          callback("EOF");
-          }
-        */
     });
 }
 
@@ -385,7 +370,7 @@ function main() {
         }
     }
 
-	/*
+    /*
 
       window.onload = function() {
       if(!window.location.hash) {
@@ -394,7 +379,7 @@ function main() {
       }
       };
 
-	*/
+    */
 
     /**
      * db/tags.txt
