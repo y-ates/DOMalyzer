@@ -140,8 +140,10 @@ function create_bruteforce_dom() {
     var x = document.createElement("img");
     document.getElementsByTagName("body")[0].appendChild(x);
 
-    current_brute_tag = "img";
-    getline(0, attr_file, bruteforce_attribute, attr_parameters);
+    //current_brute_tag = "img";
+    //getline(0, attr_file, bruteforce_attribute, attr_parameters);
+	bruteforce(tags_file, attr_file, "name");
+}
 }
 
 function bruteforce_tags(line) {
