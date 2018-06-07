@@ -167,6 +167,37 @@ function write_to_file(data, url) {
 function isFunction(functionToCheck) {
  return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
 }
+function check_clobbered(string, tag) {
+    if (typeof window[string] === "undefined") {
+        //object does not exist
+        undo_tag(tag);
+
+        return;
+    } else if(isFunction(window[string])) {
+		undo_tag(tag);
+		
+		return;
+	} else {
+		var t = window[string];
+        var expectedNode = tag.toUpperCase() === document.getElementsByTagName(tag)[0].tagName.toUpperCase();
+		console.log(t);
+        if (expectedNode) {
+            var details = "Tag: " + tag + ", attribute: " + string;
+            var node = window[string];
+
+//            write_to_file(details, "http://localhost:8002/filewriter.php");
+
+            console.log("Clobbering...");
+            console.log("Tag: " + tag + ", attribute: " + string);
+            console.log("Node: ");
+            console.log(window[string]);
+            clobbered++;
+            console.log("clobbered:" + clobbered);
+
+        }
+
+        undo_tag(tag);
+    }
 }
 
 function bruteforce_tags(line) {
